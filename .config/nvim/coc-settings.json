@@ -1,0 +1,7 @@
+{
+  "suggest.maxCompleteItemCount": 10,
+  "diagnostic.warningSign": "",
+  "diagnostic.hintSign": "ﯦ",
+  "diagnostic.infoSign": "",
+  "diagnostic.errorSign": "✖"
+}
