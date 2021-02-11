@@ -6,7 +6,7 @@ export LS_COLORS
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-HISTORY_IGNORE="(ls *|cd *|pwd|neofetch|ranger|which *|echo *)"
+HISTORY_IGNORE="(ls *|cd *|pwd|neofetch|lf|which *|echo *)"
 
 # Auto/tab complete:
 autoload -U compinit
@@ -40,9 +40,8 @@ zle -N zle-keymap-select
 precmd(){ echo -ne '\e[6 q' ;}
 
 # Switch directory  ctrl-space
-bindkey -s '^ ' 'ranger\n'
-alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-export RANGER_LOAD_DEFAULT_RC=false
+bindkey -s '^ ' 'lf\n'
+alias lf='lf --last-dir-path=$HOME/.lastDir; LASTDIR=`cat $HOME/.lastDir`; cd "$LASTDIR"'
 alias nv='nvim'
 setopt HIST_IGNORE_ALL_DUPS
 
