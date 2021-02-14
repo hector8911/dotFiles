@@ -1,7 +1,7 @@
 
 # terminal emulator
 super + Return
-	kitty
+	termite
 
 # program launcher
 super + @space

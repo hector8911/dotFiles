@@ -1,0 +1,30 @@
+[options]
+clickable_url = true
+font = JetBrainsMono NF Bold 10
+mouse_autohide = true
+scrollback_lines = 500
+
+[colors]
+cursor = #ffffff
+cursor_foreground = #212121
+foreground = #ffffff
+background = rgba(33, 33, 33, 0.9)
+highlight = #2f2f2f
+
+color0 = #666666
+color1 = #FF1E8E
+color2 = #8EFF1E
+color3 = #FFF800
+color4 = #1E8EFF
+color5 = #E500ES
+color6 = #00E5E5
+color7 = #E5E5E5
+
+color8 = #666666
+color9 = #FF1E8E
+color10 = #8EFF1E
+color11 = #FFF800
+color12 = #1E8EFF
+color13 = #E500ES
+color14 = #00E5E5
+color15 = #E5E5E5
