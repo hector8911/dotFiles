@@ -1,7 +1,7 @@
 # Default Apps
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERMINAL="kitty"
+export TERMINAL="st"
 export BROWSER="librewolf"
 export VIDEO="mpv"
 export COLORTERM="truecolor"

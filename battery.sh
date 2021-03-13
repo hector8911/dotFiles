@@ -2,7 +2,7 @@
 
 while true
 do
-		export DISPLAY=:0.0
+	export DISPLAY=:0.0
     battery_level=`acpi -b | grep -P -o '[0-9]+(?=%)'`
     ac_power=$(acpi -b|grep -c "Charging")
 		if [ $battery_level = 98 ]; then

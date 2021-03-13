@@ -1,3 +1,4 @@
+
 autoload -U colors && colors
 alias ls='ls --color=auto'
 LS_COLORS='di=01;34:fi=33:ln=01;36:pi=40;33:so=01;35:bd=5:cd=5:or=31:mi=0:ex=1;32:*.png=95:*.jpg=95'
@@ -42,7 +43,13 @@ precmd(){ echo -ne '\e[6 q' ;}
 # Switch directory  ctrl-space
 bindkey -s '^ ' 'lf\n'
 alias lf='lf --last-dir-path=$HOME/.lastDir; LASTDIR=`cat $HOME/.lastDir`; cd "$LASTDIR"'
-alias nv='nvim'
+
+bindkey -s '^e' 'nvim\n'
+alias gps='git push'
+alias gs='git status'
+alias gpl='git pull'
+alias gl='git log'
+alias cmm='git commit -m'
 setopt HIST_IGNORE_ALL_DUPS
 
 SPACESHIP_PROMPT_ORDER=( dir git char )
@@ -56,3 +63,4 @@ promptinit
 prompt spaceship
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
