@@ -2,7 +2,7 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="st"
-export BROWSER="librewolf"
+export BROWSER="brave"
 export VIDEO="mpv"
 export COLORTERM="truecolor"
 export OPENER="xdg-open"

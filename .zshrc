@@ -7,7 +7,7 @@ export LS_COLORS
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-HISTORY_IGNORE="(ls *|cd *|pwd|neofetch|lf|which *|echo *)"
+HISTORY_IGNORE="(ls *|cd *|pwd|neofetch|lf|which *|echo *|nvim *|add *|restore *|commit *|status|glog)"
 
 # Auto/tab complete:
 autoload -U compinit
@@ -45,12 +45,18 @@ bindkey -s '^ ' 'lf\n'
 alias lf='lf --last-dir-path=$HOME/.lastDir; LASTDIR=`cat $HOME/.lastDir`; cd "$LASTDIR"'
 
 bindkey -s '^e' 'nvim\n'
-alias gps='git push'
-alias gs='git status'
-alias gpl='git pull'
-alias gl='git log'
-alias cmm='git commit -m'
+
+alias add='git add'
+alias restore='git restore'
+alias push='git push'
+alias status='git status'
+alias pull='git pull'
+alias glog='git log'
+alias commit='git commit -m'
+
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_REDUCE_BLANKS
 
 SPACESHIP_PROMPT_ORDER=( dir git char )
 SPACESHIP_PROMPT_ADD_NEWLINE=false
