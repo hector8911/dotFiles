@@ -30,11 +30,11 @@ bindkey "\e[B" down-line-or-beginning-search
 
 # Update cursor
 function zle-keymap-select() {
-		if [[ ${KEYMAP} == vicmd ]]; then
-				echo -ne "\e[2 q"
-		else
-				echo -ne "\e[6 q"
-		fi
+	if [[ ${KEYMAP} == vicmd ]]; then
+		echo -ne "\e[2 q"
+	else
+		echo -ne "\e[6 q"
+	fi
 }
 
 zle -N zle-keymap-select
@@ -42,7 +42,7 @@ precmd(){ echo -ne '\e[6 q' ;}
 
 # Switch directory  ctrl-space
 bindkey -s '^ ' 'lf\n'
-alias lf='lf --last-dir-path=$HOME/.lastDir; LASTDIR=`cat $HOME/.lastDir`; cd "$LASTDIR"'
+alias lf='lfrun --last-dir-path=$HOME/.lastDir; LASTDIR=`cat $HOME/.lastDir`; cd "$LASTDIR"'
 
 bindkey -s '^e' 'nvim\n'
 
