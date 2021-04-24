@@ -18,12 +18,13 @@ return require('packer').startup(function()
     use 'tanvirtin/monokai.nvim'
     use 'sheerun/vim-polyglot'
 
-    -- LSP, Autocomplete and snippets
+    -- LSP - Autocomplete
     use {'neovim/nvim-lspconfig' , config = M("nvim-lspconfig", "lsp")}
     use {'hrsh7th/nvim-compe', config = M("nvim-compe", "completion")}
     use 'kabouzeid/nvim-lspinstall'
-    
-    use {'windwp/nvim-autopairs', config = M("nvim-autopairs")}
+    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = M("nvim-treesitter", "treesitter")}
+
+    use {'windwp/nvim-autopairs', config = M("nvim-autopairs", "autopairs")}
     use 'alvan/vim-closetag'
     use 'hrsh7th/vim-vsnip'
     use "rafamadriz/friendly-snippets"
@@ -38,14 +39,14 @@ return require('packer').startup(function()
         config = M("gitsigns.nvim", "gitsigns")
     }
 
-    -- Tabs buffers
-    use {'akinsho/nvim-bufferline.lua', config = M("nvim-bufferline.lua", "bufferline")}
-
     -- Explorer
     use 'kyazdani42/nvim-web-devicons'
-    use {'kyazdani42/nvim-tree.lua', config = M("nvim-tree.lua", "nvim-tree")}
+    use {'kyazdani42/nvim-tree.lua', config = M("nvim-tree.lua", "explorer")}
 
     -- Terminal
     use {"akinsho/nvim-toggleterm.lua", config = M("nvim-toggleterm.lua", "terminal")}
+
+    -- Tabs buffers
+    use {'akinsho/nvim-bufferline.lua', config = M("nvim-bufferline.lua", "bufferline")}
 
 end)

@@ -1,3 +1,4 @@
+
 local H = require("utils.highlights")
 local icons_loaded, devicons
 
@@ -99,7 +100,6 @@ function M.readonly(ctx, icon)
 end
 
 local function buf_expand(bufnum, mod) return fn.expand("#" .. bufnum .. mod) end
-
 
 function M.filename(ctx, modifier)
     modifier = modifier or ":t"
@@ -261,65 +261,6 @@ end
 function M.item_if(item, condition, hl, opts)
     if not condition then return M.spacer() end
     return M.item(item, hl, opts)
-end
-
------------------------------------------------------------------------------//
--- Git/Github helper functions
------------------------------------------------------------------------------//
-local function job(interval, task, on_complete)
-    vim.defer_fn(task, 2000)
-    local pending_job
-    local timer = fn.timer_start(interval, function()
-        -- clear previous job
-        if pending_job then fn.jobstop(pending_job) end
-        pending_job = task()
-    end, {["repeat"] = -1})
-    if on_complete then on_complete(timer) end
-end
-
-local function is_git_repo() return fn.isdirectory(fn.getcwd() .. "/" .. ".git") end
-
-local function git_read(result)
-    return function(_, data, _)
-        for _, v in ipairs(data) do
-            if v and v ~= "" then table.insert(result, v) end
-        end
-    end
-end
-
-local function git_update_status(result)
-    return function(_, code, _)
-        if code == 0 and result and #result > 0 then
-            local parts = vim.split(result[1], "\t")
-            if parts and #parts > 1 then
-                local formatted = {behind = parts[1], ahead = parts[2]}
-                vim.g.git_statusline_updates = formatted
-            end
-        end
-    end
-end
-
-local function git_update_job()
-    local cmd = "git rev-list --count --left-right @{upstream}...HEAD"
-    local result = {}
-    return fn.jobstart(cmd, {
-        on_stdout = git_read(result),
-        on_exit = git_update_status(result)
-    })
-end
-
-function M.git_updates_refresh() git_update_job() end
-
-function M.git_update_toggle()
-    local on = is_git_repo()
-    if on then M.git_updates() end
-    local status = on and 0 or 1
-    fn.timer_pause(vim.g.git_statusline_updates_timer, status)
-end
-
-function M.git_updates()
-    job(30000, git_update_job,
-        function(timer) vim.g.git_statusline_updates_timer = timer end)
 end
 
 --check whether the plugin is installed to use local settings

@@ -1,13 +1,11 @@
+
 local fn = vim.fn
 local synIDattr = fn.synIDattr
 local hlID = fn.hlID
 
-local P = require("utils.colors").palette
-
 local M = {}
 
 --- Check if the current window has a winhighlight
---- which includes the specific target highlight
 function M.has_win_highlight(win_id, ...)
   local win_hl = vim.wo[win_id].winhighlight
   local has_match = false
@@ -20,47 +18,7 @@ function M.has_win_highlight(win_id, ...)
   return (win_hl ~= nil and has_match), win_hl
 end
 
-local function find(haystack, matcher)
-  local found
-  for _, needle in ipairs(haystack) do
-    if matcher(needle) then
-      found = needle
-      break
-    end
-  end
-  return found
-end
-
----A mechanism to allow inheritance of the winhighlight of a specific
-function M.adopt_winhighlight(win_id, target, name, default)
-  name = name .. win_id
-  local _, win_hl = M.has_win_highlight(win_id, target)
-  local hl_exists = vim.fn.hlexists(name) > 0
-  if not hl_exists then
-    local parts = vim.split(win_hl, ",")
-    local found =
-      find(
-      parts,
-      function(part)
-        return part:match(target)
-      end
-    )
-    if found then
-      --[[local hl_group = vim.split(found, ":")[2]
-      local bg = M.hl_value(hl_group, "bg")
-      local fg = M.hl_value(default, "fg")
-      local gui = M.hl_value(default, "gui")
-      M.highlight(name, {guibg = P.dark, guifg = P.white, gui = gui})]]
-    end
-  end
-  return name
-end
-
 --- TODO eventually move to using `nvim_set_hl`
---- however for the time being that expects colors
---- to be specified as rgb not hex
----@param name string
----@param opts table
 function M.highlight(name, opts)
   local force = opts.force or false
   if name and vim.tbl_count(opts) > 0 then
@@ -98,52 +56,25 @@ function M.all(hls)
   end
 end
 
-local function general_overrides()
+function M.general_overrides()
   M.all {
     {"Comment", {gui = "italic"}},
-    -- Customize Diff highlighting, Neogit
-    {"DiffAdd", {guibg = P.bg, guifg = P.green}},
-    {"DiffDelete", {guibg = P.bg, guifg = P.red}},
-    {"DiffChange", {guibg = P.bg, guifg = P.orange }},
+    --Neogit
+    {"DiffAdd", {guibg = _G.P.bg, guifg = _G.P.green}},
+    {"DiffDelete", {guibg = _G.P.bg, guifg = _G.P.red}},
+    {"DiffChange", {guibg = _G.P.bg, guifg = _G.P.orange }},
+    {"NeogitNotificationError", {link = "StError"}},
+    {"NeogitNotificationWarning", {link = "StWarning"}},
     -- Git Signs
-    {"GitSignsAdd", { guifg = P.green}},
-    {"GitSignsChange", {guifg = P.orange}},
-    {"GitSignsDelete", {guifg = P.red}},
+    {"GitSignsAdd", { guifg = _G.P.green}},
+    {"GitSignsChange", {guifg = _G.P.orange}},
+    {"GitSignsDelete", {guifg = _G.P.red}},
+    --NvimTree
+    {"NvimTreeNormal", {guibg = _G.P.bg }},
+    {"NvimtreeVertSplit", {guibg = _G.P.bg, guifg = _G.P.bg}},
+    {"NvimtreeStatusLine", {guibg = _G.P.bg, guifg = _G.P.white}},
+    {"NvimtreeStatuslineNC", {guibg = _G.P.bg, guifg = _G.P.fg}},
   }
-end
-
-local function set_explorer_highlight()
-  local hls = {
-    {"ExplorerBackground", {guibg = P.bg }},
-    {"ExplorerVertSplit", {guibg = P.bg, guifg = P.bg}},
-    {"ExplorerSt", {guibg = P.bg, guifg = P.white}},
-    --unfocus
-    {"ExplorerStNC", {guibg = P.bg, guifg = P.fg}},
-  }
-  for _, grp in ipairs(hls) do
-    M.highlight(unpack(grp))
-  end
-end
-
-function M.on_explorer_enter()
-  local highlights =
-    table.concat(
-    {
-      "Normal:ExplorerBackground",
-      "EndOfBuffer:ExplorerBackground",
-      "StatusLine:ExplorerSt",
-      "StatusLineNC:ExplorerStNC",
-      "SignColumn:ExplorerBackground",
-      "VertSplit:ExplorerVertSplit",
-    },
-    ","
-  )
-  vim.cmd("setlocal winhighlight=" .. highlights)
-end
-
-function M.apply_user_highlights()
-  general_overrides()
-  set_explorer_highlight()
 end
 
 require("utils.autocommands").augroup(
@@ -152,12 +83,7 @@ require("utils.autocommands").augroup(
     {
       events = {"VimEnter", "ColorScheme"},
       targets = {"*"},
-      command = "lua require('utils.highlights').apply_user_highlights()"
-    },
-    {
-      events = {"FileType"},
-      targets = {"NvimTree"},
-      command = "lua require('utils.highlights').on_explorer_enter()"
+      command = "lua require('utils.highlights').general_overrides()"
     }
   }
 )

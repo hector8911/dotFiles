@@ -1,4 +1,4 @@
-local P = require("utils.colors").palette
+
 require'bufferline'.setup {
     options = {
         show_close_icon = false,
@@ -13,7 +13,8 @@ require'bufferline'.setup {
         end
     },
     highlights = {
-      fill = {guibg = P.bg},
+        fill = {guibg = _G.P.bg},
+        error_diagnostic_selected = {guifg = _G.P.red},
+        error_selected = {guifg = _G.P.red}
     }
 }
-

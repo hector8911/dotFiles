@@ -1,3 +1,9 @@
+
+local utils = require("utils")
+local H = require("utils.highlights")
+local autocommands = require("utils.autocommands")
+local M = {}
+
 local function is_empty(item)
     if not item then return true end
     local item_type = type(item)
@@ -8,43 +14,33 @@ local function is_empty(item)
     end
 end
 
-local utils = require("utils")
-local H = require("utils.highlights")
-local autocommands = require("utils.autocommands")
-
-local P = require("utils.colors").palette
-local M = {}
-
-M.git_updates = utils.git_updates
-M.git_toggle_updates = utils.git_update_toggle
-M.git_updates_refresh = utils.git_updates_refresh
-
 function M.colors()
     H.all {
-        {"StIndicator", {guibg = P.bg, guifg = P.blue}},
-        {"StTitle", {guibg = P.bg, guifg = P.yellow}},
-        {"StInactiveSep", {guibg = P.bg, guifg = P.grey}},
+        {"StIndicator", {guibg = _G.P.bg, guifg = _G.P.blue}},
+        {"StTitle", {guibg = _G.P.bg, guifg = _G.P.yellow}},
+        {"StInactiveText", {guibg = _G.P.bg, guifg = _G.P.fg}},
+        {"StText", {guibg = _G.P.bg, guifg = _G.P.light_yellow}},
 
-        {"StatusLine", {guibg = P.bg, guifg = P.bg}},
-        {"StatusLineNC", {guibg = P.bg, guifg = P.white}},
-        {"StFilenameInactive", { guibg = P.bg, guifg = P.fg}},
+        {"StatusLine", {guibg = _G.P.bg, guifg = _G.P.white}},
+        {"StatusLineNC", {guibg = _G.P.bg, guifg = _G.P.white}},
+        {"StFilenameInactive", { guibg = _G.P.bg, guifg = _G.P.fg}},
 
-        {"StDirectory", {guibg = P.bg, guifg = P.grey }},
-        {"StParentDirectory",{guibg = P.bg, guifg = P.green}},
-        {"StFilename", {guibg = P.bg, guifg = P.white}},
+        {"StDirectory", {guibg = _G.P.bg, guifg = _G.P.grey }},
+        {"StParentDirectory",{guibg = _G.P.bg, guifg = _G.P.green}},
+        {"StFilename", {guibg = _G.P.bg, guifg = _G.P.white}},
 
-        --Git signs
-        {"StInfo", {guibg = P.bg, guifg = P.blue}},
-        {"StGreen", {guibg = P.bg, guifg = P.green}},
-        {"StWarning", {guibg = P.bg, guifg = P.yellow }},
-        {"StError", {guibg = P.bg, guifg = P.red}},
+        --Git icons
+        {"StInfo", {guibg = _G.P.bg, guifg = _G.P.blue}},
+        {"StGreen", {guibg = _G.P.bg, guifg = _G.P.green}},
+        {"StWarning", {guibg = _G.P.bg, guifg = _G.P.yellow }},
+        {"StError", {guibg = _G.P.bg, guifg = _G.P.red}},
 
         --Modes
-        {"StModeNormal", {guibg = P.bg, guifg = P.fg}},
-        {"StModeInsert", {guibg = P.bg, guifg = P.blue}},
-        {"StModeVisual", {guibg = P.bg, guifg = P.magenta}},
-        {"StModeReplace", {guibg = P.bg, guifg = P.red}},
-        {"StModeCommand", {guibg = P.bg, guifg = P.orange}}
+        {"StModeNormal", {guibg = _G.P.bg, guifg = _G.P.fg}},
+        {"StModeInsert", {guibg = _G.P.bg, guifg = _G.P.blue}},
+        {"StModeVisual", {guibg = _G.P.bg, guifg = _G.P.magenta}},
+        {"StModeReplace", {guibg = _G.P.bg, guifg = _G.P.red}},
+        {"StModeCommand", {guibg = _G.P.bg, guifg = _G.P.light_yellow}}
     }
 end
 
@@ -91,38 +87,35 @@ function _G.statusline()
         shiftwidth = vim.bo[curbuf].shiftwidth,
         expandtab = vim.bo[curbuf].expandtab
     }
-    ----------------------------------------------------------------------------//
+
     -- Modifiers
-    ----------------------------------------------------------------------------//
+
     local plain = utils.is_plain(ctx)
     local inactive = vim.api.nvim_get_current_win() ~= curwin
     local focused = vim.g.vim_in_focus or true
     local minimal = plain or inactive or not focused
 
-    ----------------------------------------------------------------------------//
     -- Setup
-    ----------------------------------------------------------------------------//
+
     local statusline = {}
     append(statusline, utils.item_if("▌", not minimal, "StIndicator", {before = "", after = ""}), 0)
 
     append(statusline, utils.spacer(1))
 
-    ----------------------------------------------------------------------------//
     -- Filename
-    ----------------------------------------------------------------------------//
+
     -- highlight the filename components separately
     local filename_hl = minimal and "StFilenameInactive" or "StFilename"
     local directory_hl = minimal and "StFilenameInactive" or "StDirectory"
     local parent_hl = minimal and directory_hl or "StParentDirectory"
 
-    if H.has_win_highlight(curwin, "Normal", "StatusLine") then
-        directory_hl = H.adopt_winhighlight(curwin, "StatusLine","StCustomDirectory", "StTitle")
-        filename_hl = H.adopt_winhighlight(curwin, "StatusLine","StCustomFilename", "StTitle")
-        parent_hl = H.adopt_winhighlight(curwin, "StatusLine","StCustomParentDir", "StTitle")
+   if H.has_win_highlight(curwin, "Normal", "StatusLine") then
+        directory_hl = "StCustomDirectory"..curwin
+        filename_hl = "StCustomFilename"..curwin
+        parent_hl = "StCustomParentDir"..curwin
     end
-    local opt = {icon_bg = "StTitle", default = "StTitle" }
 
-    local ft_icon, icon_highlight = utils.filetype(ctx, opt)
+    local ft_icon, icon_highlight = utils.filetype(ctx, {icon_bg = "StTitle", default = "StTitle" })
 
     local file_opts = {before = "", after = ""}
     local parent_opts = {before = "", after = ""}
@@ -166,19 +159,19 @@ function _G.statusline()
     local status = vim.b.gitsigns_status_dict
     if status then
         append(statusline, utils.item(status.head, "StInfo", { prefix = "" }), 1)
+        append(statusline, utils.item(status.added, "StGreen", { prefix = "" }), 3)
         append(statusline, utils.item(status.changed,  "StWarning", { prefix = "" }), 3)
         append(statusline, utils.item(status.removed, "StError", { prefix = "" }), 3)
-        append(statusline, utils.item(status.added, "StGreen", { prefix = "" }), 3)
     end
 
     --number/total
     append(statusline, utils.line_info({
         prefix = "",
         sep = ":",
-        prefix_color = "StInactiveSep",
-        current_hl = "StTitle",
-        total_hl = "StInactiveSep",
-        sep_hl = "StInactiveSep"
+        prefix_color = "StInactiveText",
+        current_hl = "StText",
+        total_hl = "StInactiveText",
+        sep_hl = "StInactiveText"
     }), 7)
     append(statusline, {"%<"})
 
@@ -203,30 +196,7 @@ local function setup_autocommands()
             targets = {"*"},
             command = "lua require'plugins.statusline'.colors()"
         },
-        {
-            events = {"VimEnter"},
-            targets = {"*"},
-            command = "lua require'plugins.statusline'.git_updates()"
-        },
-        {
-            events = {"DirChanged"},
-            targets = {"*"},
-            command = "lua require'plugins.statusline'.git_toggle_updates()"
-        },
-        -- NOTE: user autocommands can't be joined into one autocommand
-        {
-            events = {"User AsyncGitJobComplete"},
-            command = "lua require'plugins.statusline'.git_updates_refresh()"
-        },
-        {
-            events = {"User NeogitStatusRefresh"},
-            command = "lua require'plugins.statusline'.git_updates_refresh()"
-        },
-        {
-            events = {"User FugitiveChanged"},
-            command = "lua require'plugins.statusline'.git_updates_refresh()"
-        },
-        {events = {"User FugitiveChanged"}, command = "redrawstatus!"}
+        { events = {"User FugitiveChanged"}, command = "redrawstatus!"}
     })
 end
 

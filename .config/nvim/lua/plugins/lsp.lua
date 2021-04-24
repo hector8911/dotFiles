@@ -1,3 +1,4 @@
+
 --Location modules install
 local PATH = vim.fn.stdpath('data').. "/lspinstall/"
 
@@ -8,11 +9,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 -- Diagnostic error icons
 vim.fn.sign_define("LspDiagnosticsSignError",{
-  texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"
+  texthl = "StError", text = "", numhl = "StError"
 })
 
-vim.fn.sign_define("LspDiagnosticsSignWarning", { 
-  texthl = "LspDiagnosticsSignWarning", text = "",   numhl = "LspDiagnosticsSignWarning"
+vim.fn.sign_define("LspDiagnosticsSignWarning", {
+  texthl = "StWarning", text = "",   numhl = "StWarning"
 })
 vim.fn.sign_define("LspDiagnosticsSignHint", {
   texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"
@@ -20,6 +21,33 @@ vim.fn.sign_define("LspDiagnosticsSignHint", {
 vim.fn.sign_define("LspDiagnosticsSignInformation", {
   texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"
 })
+
+vim.lsp.protocol.CompletionItemKind = {
+  " Text ",
+  " Method",
+  " Function",
+  " Constructor",
+  "ﴲ Field",
+  " Variable",
+  " Class",
+  "ﰮ Interface",
+  " Module",
+  "襁 Property",
+  " Unit",
+  " Value",
+  "練 Enum",
+  " Keyword",
+  " Snippet",
+  " Color",
+  " File",
+  " Reference",
+  " Folder",
+  " EnumMember",
+  "ﲀ Constant",
+  "ﳤ Struct",
+  " Event",
+  " TypeParameter"
+}
 
 --Languages server
 require'lspconfig'.intelephense.setup {
@@ -35,10 +63,4 @@ require'lspconfig'.tsserver.setup {
   -- This makes sure tsserver is not used for formatting (I prefer prettier)
   --on_attach = on_attach,
   root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", "."),
-  --settings = {documentFormatting = true},
-  --[[handlers = {
-      ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, 
-      {virtual_text = true, signs = true, underline = true}
-      )
-  }]]
 }
