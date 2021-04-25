@@ -31,3 +31,6 @@ C.map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", {noremap = true, silen
 C.map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", {noremap = true, silent = true})
 
 C.map("t", "<esc>", [[<C-\><C-n>]], {noremap = true})
+
+C.map("n", "<leader>c", ":CommentToggle<CR>", opt)
+C.map("v", "<leader>c", ":CommentToggle<CR>", opt)

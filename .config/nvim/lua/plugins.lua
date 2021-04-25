@@ -19,7 +19,7 @@ return require('packer').startup(function()
     use 'sheerun/vim-polyglot'
 
     -- LSP - Autocomplete
-    use {'neovim/nvim-lspconfig' , config = M("nvim-lspconfig", "lsp")}
+    use {'neovim/nvim-lspconfig', config = M("nvim-lspconfig", "lsp")}
     use {'hrsh7th/nvim-compe', config = M("nvim-compe", "completion")}
     use 'kabouzeid/nvim-lspinstall'
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = M("nvim-treesitter", "treesitter")}
@@ -31,13 +31,9 @@ return require('packer').startup(function()
 
     -- Git
     use {'tpope/vim-fugitive'}
-    use {"TimUntersberger/neogit", config = M("neogit", "neogit")}
-    use 
-    {
-        'lewis6991/gitsigns.nvim',
-        requires = {'nvim-lua/plenary.nvim'},
-        config = M("gitsigns.nvim", "gitsigns")
-    }
+    use {'nvim-lua/plenary.nvim'}
+    use {'TimUntersberger/neogit', config = M("neogit", "neogit")}
+    use {'lewis6991/gitsigns.nvim', config = M("gitsigns.nvim", "gitsigns")}
 
     -- Explorer
     use 'kyazdani42/nvim-web-devicons'
@@ -48,5 +44,8 @@ return require('packer').startup(function()
 
     -- Tabs buffers
     use {'akinsho/nvim-bufferline.lua', config = M("nvim-bufferline.lua", "bufferline")}
+
+    --Comment
+    use {"terrortylor/nvim-comment", config = M("nvim-comment", "comment")}
 
 end)

@@ -1,0 +1,43 @@
+#!/bin/sh
+path=$(pwd)
+
+#HOME
+ln -sf $path/.tmux.conf $HOME/.tmux.conf
+ln -sf $path/.xinitrc $HOME/.xinitrc
+ln -sf $path/.zprofile $HOME/.zprofile
+ln -sf $path/.zshenv $HOME/.zshenv
+ln -sf $path/.zshrc $HOME/.zshrc
+ln -sf $path/battery.sh $HOME/battery.sh
+
+#Config
+[ ! -d $HOME/.config ] && mkdir $HOME/.config
+
+[ -d $HOME/.config/nvim ] && rm -rf $HOME/.config/nvim
+ln -sf $path/.config/nvim $HOME/.config/nvim
+
+[ -d $HOME/.config/bspwm ] && rm -rf $HOME/.config/bspwm
+ln -sf $path/.config/bspwm $HOME/.config/bspwm
+
+[ -d $HOME/.config/dunst ] && rm -rf $HOME/.config/dunst
+ln -sf $path/.config/dunst $HOME/.config/dunst
+
+[ -d $HOME/.config/lf ] && rm -rf $HOME/.config/lf
+ln -sf $path/.config/lf $HOME/.config/lf
+
+[ -d $HOME/.config/polybar ] && rm -rf $HOME/.config/polybar
+ln -sf $path/.config/polybar $HOME/.config/polybar
+
+[ -d $HOME/.config/rofi ] && rm -rf $HOME/.config/rofi
+ln -sf $path/.config/rofi $HOME/.config/rofi
+
+[ -d $HOME/.config/sxhkd ] && rm -rf $HOME/.config/sxhkd
+ln -sf $path/.config/sxhkd $HOME/.config/sxhkd
+
+[ -d $HOME/.config/termite ] && rm -rf $HOME/.config/termite
+ln -sf $path/.config/termite $HOME/.config/termite
+
+ln -sf $path/.config/picom.conf $HOME/.config/picom.conf
+
+#Local
+[ -d $HOME/.local/share/fonts ] && rm -r $HOME/.local/share/fonts
+ln -sf $path/.local/share/fonts $HOME/.local/share/fonts
