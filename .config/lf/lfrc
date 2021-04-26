@@ -60,24 +60,23 @@ cmd dragon-stay %dragon-drag-and-drop -a $fx
 cmd dragon-individual %dragon-drag-and-drop $fx
 
 cmd paste-overwrite &{{
-	set -f
-	load=$(lf -remote "load")
-	mode=$(echo "$load" | head -1)
-	list=$(echo "$load" | sed '1d')
-	set -- _ $list; shift
-	[ $# -gt 0 ] || exit
-	case $mode in
-		copy)
-			rsync -r "$@" ./
-			;;
-		move)
-			rsync -r --remove-source-files "$@" ./
-			;;
-	esac
-	lf -remote 'save\nmove\n'
-	lf -remote "send $id load"
-	lf -remote "send clear"
-	lf -remote "send $id echo \"\033[0;32mpasted $# file(s)\033[0m\""
+  set -f
+  load=$(lf -remote "load")
+  mode=$(echo "$load" | head -1)
+  list=$(echo "$load" | sed '1d')
+  set -- _ $list; shift
+  [ $# -gt 0 ] || exit
+  case $mode in
+    copy) rsync -r "$@" ./ 
+    ;;
+    move) rsync -r --remove-source-files "$@" ./
+    ;;
+  esac
+
+  lf -remote 'save\nmove\n'
+  lf -remote "send $id load"
+  lf -remote "send clear"
+  lf -remote "send $id echo \"\033[0;32mpasted $# file(s)\033[0m\""
 }}
 
 #Mappings
@@ -97,12 +96,10 @@ map a push :touch<space>
 map A push :mkdir<space>
 map R reload
 map r ${{
-	# get 'basename' of the selection
-	filename="${f##*/}"
-	# quote it so we won't deal with quotes in the lf -remote command
-	filename="$(printf '%q' "$filename")"
-	filename="${filename// /<space>}"
-	lf -remote "send $id push :rename<space>$filename"
+  filename="${f##*/}"
+  filename="$(printf '%q' "$filename")"
+  filename="${filename// /<space>}"
+  lf -remote "send $id push :rename<space>$filename"
 }}
 
 # execute current file (must be executable)
