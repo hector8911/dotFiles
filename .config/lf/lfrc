@@ -1,7 +1,9 @@
+
 set shell sh
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
+set incsearch
 
 set icons
 set ratios 1:2:3
@@ -11,45 +13,28 @@ set previewer ~/.config/lf/preview
 # Functions
 
 cmd open ${{
-    case $(file --mime-type $f -b) in
-        text/*) $EDITOR $fx;;
-        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
-    esac
+  case $(file --mime-type $f -b) in text/*) $EDITOR $fx;;
+    *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+  esac
 }}
 
-cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
-
-cmd delete ${{
-     set -f
-     printf "Delete? [y/n] "
-     read ans
-     [ $ans = "y" ] && rm -rf $fx
-}}
+cmd rename %[ -e $1 ] && printf "\033[0;31mThe file already exists" || mv $f $1
 
 cmd extract ${{
-    set -f
-    case $f in
-        *.tar.bz|*.tar.bz2) tar xjvf $f;;
-        *.tar.gz) tar xzvf $f;;
-        *.tar) tar xvf $f ;;
-        *.zip) unzip $f;;
-        *.rar) unrar x $f;;
-    esac
+  set -f
+  case $f in
+    *.tar.bz|*.tar.bz2) tar xjvf $f;;
+    *.tar.gz) tar xzvf $f;;
+    *.tar) tar xvf $f ;;
+    *.zip) unzip $f;;
+    *.rar) unrar x $f;;
+  esac
 }}
 
 cmd zip %zip -r "$f" "$f"
 
-cmd mkdir ${{
-  printf "Directory Name: "
-  read ans
-  mkdir $ans
-}}
-
-cmd mkfile ${{
-  printf "File Name: "
-  read ans
-  touch $ans
-}}
+cmd mkdir %mkdir -p "$@"
+cmd touch %touch "$@"
 
 cmd trash ${{
   files=$(printf "$fx" | tr '\n' ';')
@@ -70,6 +55,31 @@ cmd restore_trash ${{
   trash-restore
 }}
 
+cmd dragon %dragon-drag-and-drop -a -x $fx
+cmd dragon-stay %dragon-drag-and-drop -a $fx
+cmd dragon-individual %dragon-drag-and-drop $fx
+
+cmd paste-overwrite &{{
+	set -f
+	load=$(lf -remote "load")
+	mode=$(echo "$load" | head -1)
+	list=$(echo "$load" | sed '1d')
+	set -- _ $list; shift
+	[ $# -gt 0 ] || exit
+	case $mode in
+		copy)
+			rsync -r "$@" ./
+			;;
+		move)
+			rsync -r --remove-source-files "$@" ./
+			;;
+	esac
+	lf -remote 'save\nmove\n'
+	lf -remote "send $id load"
+	lf -remote "send clear"
+	lf -remote "send $id echo \"\033[0;32mpasted $# file(s)\033[0m\""
+}}
+
 #Mappings
 
 map tr restore_trash
@@ -77,19 +87,33 @@ map <delete> %trash-empty
 map d trash
 map D delete
 
+map <esc> clear
 map <enter> open
 map . set hidden!
 map c copy
 map x cut
-map a mkfile
-map A mkdir
+map P paste-overwrite
+map a push :touch<space>
+map A push :mkdir<space>
 map R reload
-map r push :rename<space>
+map r ${{
+	# get 'basename' of the selection
+	filename="${f##*/}"
+	# quote it so we won't deal with quotes in the lf -remote command
+	filename="$(printf '%q' "$filename")"
+	filename="${filename// /<space>}"
+	lf -remote "send $id push :rename<space>$filename"
+}}
 
 # execute current file (must be executable)
 map o $$f
 map O !$f
 
-map z zip
-map / extract
+map zi zip
+map zo extract
+
+map m
+map mm dragon
+map ms dragon-stay
+map mi dragon-individual
 
