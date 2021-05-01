@@ -14,10 +14,4 @@
 * lua/plugins/statusline.lua
 The original statusline configuration [akinsho](https://github.com/akinsho/dotfiles)
 
-![Image](https://mcminncountytn.gov/new_website/img/slides/highway.jpg)
-
-## Installation
-
-```bash
-pip install foobar
-```
+![Image](screenshots/1.png)
