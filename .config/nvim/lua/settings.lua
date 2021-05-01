@@ -24,9 +24,10 @@ o.swapfile = false
 o.writebackup = false
 o.showtabline = 2
 
-wo.foldmethod = 'indent'
+wo.foldmethod = 'expr'
+wo.foldexpr = 'nvim_treesitter#foldexpr()'
 wo.foldenable = false
-wo.foldlevel = 1
+--wo.foldlevel = 1
 
 wo.nu = true
 wo.rnu = true

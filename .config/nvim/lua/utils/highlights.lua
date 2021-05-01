@@ -74,6 +74,11 @@ function M.general_overrides()
     {"NvimtreeVertSplit", {guibg = _G.P.bg, guifg = _G.P.bg}},
     {"NvimtreeStatusLine", {guibg = _G.P.bg, guifg = _G.P.white}},
     {"NvimtreeStatuslineNC", {guibg = _G.P.bg, guifg = _G.P.fg}},
+    {"NvimTreeFolderIcon", {guifg = _G.P.blue}},
+    {"NvimTreeIndentMarker", {guifg = _G.P.blue}},
+    {"NvimTreeEmptyFolderName", {guifg = _G.P.white}},
+    {"NvimTreeOpenedFolderName", {guifg = _G.P.blue}},
+    {"NvimTreeGitDirty", {guifg = _G.P.light_yellow}},
   }
 end
 

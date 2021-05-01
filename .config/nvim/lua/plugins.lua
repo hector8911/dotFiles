@@ -16,12 +16,10 @@ return require('packer').startup(function()
 
     -- Color scheme
     use 'tanvirtin/monokai.nvim'
-    use 'sheerun/vim-polyglot'
 
     -- LSP - Autocomplete
     use {'neovim/nvim-lspconfig', config = M("nvim-lspconfig", "lsp")}
     use {'hrsh7th/nvim-compe', config = M("nvim-compe", "completion")}
-    use 'kabouzeid/nvim-lspinstall'
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = M("nvim-treesitter", "treesitter")}
 
     use {'windwp/nvim-autopairs', config = M("nvim-autopairs", "autopairs")}
@@ -36,7 +34,7 @@ return require('packer').startup(function()
     use {'lewis6991/gitsigns.nvim', config = M("gitsigns.nvim", "gitsigns")}
 
     -- Explorer
-    use 'kyazdani42/nvim-web-devicons'
+    use {'kyazdani42/nvim-web-devicons', config = M("nvim-web-devicons", "devicons")}
     use {'kyazdani42/nvim-tree.lua', config = M("nvim-tree.lua", "explorer")}
 
     -- Terminal

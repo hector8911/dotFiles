@@ -21,9 +21,6 @@ C.map("i", "<C-Space>", "compe#complete()", {expr = true})
 C.map("i", "<CR>", "v:lua.completion_confirm()", {expr = true})
 C.map("i", "<Tab>", "v:lua.tab_confirm()", {expr = true})
 
--- Indent
-C.map("n", "<leader>f", ":bufdo normal gg=G<CR>", {noremap = true})
-
 -- LSP
 C.map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
 -- C.map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>",{noremap = true, silent = true})
@@ -37,4 +34,10 @@ C.map("v", "<leader>c", ":CommentToggle<CR>", opt)
 
 C.map("n", "<leader>g", ":Neogit<CR>", opt)
 
+C.map("v", "<Tab>",">gv", opt)
+C.map("v", "<S-Tab>","<gv", opt)
+
+--Format code
+C.map("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
+C.map("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opt)
 
