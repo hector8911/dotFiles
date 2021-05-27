@@ -38,6 +38,6 @@ C.map("v", "<Tab>",">gv", opt)
 C.map("v", "<S-Tab>","<gv", opt)
 
 --Format code
-C.map("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
-C.map("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opt)
+C.map("n", "<space>p", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
+C.map("v", "<space>p", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opt)
 

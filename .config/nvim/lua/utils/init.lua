@@ -199,27 +199,27 @@ function M.mode()
     local hl = mode_highlight(current_mode)
 
     local mode_map = {
-        ["n"] = "NORMAL",
+        ["n"] =  "NORMAL  ",
         ["no"] = "N·OPERATOR PENDING ",
-        ["v"] = "VISUAL",
-        ["V"] = "V·LINE",
-        [""] = "V·BLOCK",
-        ["s"] = "SELECT",
-        ["S"] = "S·LINE",
-        ["^S"] = "S·BLOCK",
-        ["i"] = "INSERT",
-        ["R"] = "REPLACE",
-        ["Rv"] = "V·REPLACE",
-        ["Rx"] = "C·REPLACE",
-        ["Rc"] = "C·REPLACE",
-        ["c"] = "COMMAND",
-        ["cv"] = "VIM EX",
+        ["v"] =  "VISUAL  ",
+        ["V"] =  "V·LINE  ",
+        [""] = "V·BLOCK ",
+        ["s"] =  "SELECT  ",
+        ["S"] =  "S·LINE  ",
+        ["^S"] = "S·BLOCK ",
+        ["i"] =  "INSERT  ",
+        ["R"] =  "REPLACE ",
+        ["Rv"] = "V·REPLACE ",
+        ["Rx"] = "C·REPLACE ",
+        ["Rc"] = "C·REPLACE ",
+        ["c"] =  "COMMAND ",
+        ["cv"] = "VIM EX  ",
         ["ce"] = "EX",
-        ["r"] = "PROMPT",
-        ["rm"] = "MORE",
-        ["r?"] = "CONFIRM",
-        ["!"] = "SHELL",
-        ["t"] = "TERMINAL"
+        ["r"] =  "PROMPT  ",
+        ["rm"] = "MORE    ",
+        ["r?"] = "CONFIRM ",
+        ["!"] =  "SHELL   ",
+        ["t"] =  "TERMINAL"
     }
     return (mode_map[current_mode] or "UNKNOWN"), hl
 end

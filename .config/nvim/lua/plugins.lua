@@ -23,7 +23,7 @@ return require('packer').startup(function()
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = M("nvim-treesitter", "treesitter")}
 
     use {'windwp/nvim-autopairs', config = M("nvim-autopairs", "autopairs")}
-    use 'alvan/vim-closetag'
+    use 'windwp/nvim-ts-autotag'
     use 'hrsh7th/vim-vsnip'
     use "rafamadriz/friendly-snippets"
 

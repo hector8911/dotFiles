@@ -9,11 +9,12 @@ o.mouse= 'a'
 o.clipboard = 'unnamedplus'
 o.termguicolors = true
 o.syntax = 'enable'
-vim.g.polyglot_disabled = {"sensible"}
+
 vim.cmd 'colorscheme monokai'
---o.fillchars = "eob: "
+o.fillchars = "eob: "
 
 o.hidden = true
+wo.cursorline = true
 o.scrolloff = 4
 o.ignorecase = true
 o.encoding = 'utf-8'

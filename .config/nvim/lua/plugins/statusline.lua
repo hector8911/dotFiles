@@ -18,15 +18,15 @@ function M.colors()
     H.all {
         {"StIndicator", {guibg = _G.P.bg, guifg = _G.P.blue}},
         {"StTitle", {guibg = _G.P.bg, guifg = _G.P.yellow}},
-        {"StInactiveText", {guibg = _G.P.bg, guifg = _G.P.fg}},
+        {"StInactiveText", {guibg = _G.P.bg, guifg = _G.P.grey}},
         {"StText", {guibg = _G.P.bg, guifg = _G.P.light_yellow}},
 
         {"StatusLine", {guibg = _G.P.bg, guifg = _G.P.white}},
-        {"StatusLineNC", {guibg = _G.P.bg, guifg = _G.P.white}},
+        {"StatusLineNC", {guibg = _G.P.bg, guifg = _G.P.bg}},
         {"StFilenameInactive", { guibg = _G.P.bg, guifg = _G.P.fg}},
 
         {"StDirectory", {guibg = _G.P.bg, guifg = _G.P.grey }},
-        {"StParentDirectory",{guibg = _G.P.bg, guifg = _G.P.green}},
+        {"StParentDirectory",{guibg = _G.P.bg, guifg = _G.P.grey}},
         {"StFilename", {guibg = _G.P.bg, guifg = _G.P.white}},
 
         --Git icons
@@ -36,9 +36,9 @@ function M.colors()
         {"StError", {guibg = _G.P.bg, guifg = _G.P.red}},
 
         --Modes
-        {"StModeNormal", {guibg = _G.P.bg, guifg = _G.P.fg}},
-        {"StModeInsert", {guibg = _G.P.bg, guifg = _G.P.blue}},
-        {"StModeVisual", {guibg = _G.P.bg, guifg = _G.P.magenta}},
+        {"StModeNormal", {guibg = _G.P.bg, guifg = _G.P.grey}},
+        {"StModeInsert", {guibg = _G.P.bg, guifg = _G.P.green}},
+        {"StModeVisual", {guibg = _G.P.bg, guifg = _G.P.orange}},
         {"StModeReplace", {guibg = _G.P.bg, guifg = _G.P.red}},
         {"StModeCommand", {guibg = _G.P.bg, guifg = _G.P.light_yellow}}
     }

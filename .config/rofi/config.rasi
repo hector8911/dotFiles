@@ -1,11 +1,11 @@
 configuration {
   display-run: "";
-  font: "UbuntuMono NF Bold 12";
+  font: "UbuntuMono Nerd Font Bold 12";
 }
 
 * {
-  bg: #161616;
-  bg-alt: #212121;
+  bg: #1e1f1c;
+  bg-alt: #272822;
   fg: #d8d8d8;
   fg-alt: #565656;
   background-color: @bg;
@@ -57,6 +57,6 @@ prompt {
 
 window {
   width: 500;
-	border: 2;
+	border: 1;
   border-color: @fg-alt;
 }

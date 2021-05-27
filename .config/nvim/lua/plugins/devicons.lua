@@ -35,15 +35,10 @@ require "nvim-web-devicons".setup {
             color = "#BD77DC",
             name = "jpeg"
         },
-        Dockerfile = {
-            icon = "",
-            color = "#b8b5ff",
-            name = "Dockerfile"
-        },
-        rb = {
-            icon = "",
-            color = "#ff75a0",
-            name = "rb"
+        svg = {
+            icon = " ",
+            color = "#BD77DC",
+            name = "svg"
         },
         vue = {
             icon = "﵂",
@@ -70,15 +65,5 @@ require "nvim-web-devicons".setup {
             color = "#EBCB8B",
             name = "xz"
         },
-        deb = {
-            icon = "",
-            color = "#a3b8ef",
-            name = "deb"
-        },
-        rpm = {
-            icon = "",
-            color = "#fca2aa",
-            name = "rpm"
-        }
     }
 }

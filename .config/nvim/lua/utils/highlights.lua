@@ -59,6 +59,9 @@ end
 function M.general_overrides()
   M.all {
     {"Comment", {gui = "italic"}},
+    {"CursorLine", {guibg = _G.P.light_grey}},
+    {"Type", {gui = "italic"}},
+    {"Include", {gui = "italic"}},    
     --Neogit
     {"DiffAdd", {guibg = _G.P.bg, guifg = _G.P.green}},
     {"DiffDelete", {guibg = _G.P.bg, guifg = _G.P.red}},
@@ -79,6 +82,8 @@ function M.general_overrides()
     {"NvimTreeEmptyFolderName", {guifg = _G.P.white}},
     {"NvimTreeOpenedFolderName", {guifg = _G.P.blue}},
     {"NvimTreeGitDirty", {guifg = _G.P.light_yellow}},
+    {"NvimTreeRootFolder", {guifg = _G.P.red}},
+   
   }
 end
 

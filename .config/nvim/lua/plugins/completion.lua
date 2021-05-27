@@ -8,7 +8,7 @@ require'compe'.setup {
 
     source = {
         path = {kind = ""},
-        buffer = {kind = ""},
+        buffer = false,
         calc = false,
         nvim_lsp = {kind = ""},
         nvim_lua = false,

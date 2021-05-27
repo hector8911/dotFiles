@@ -6,4 +6,5 @@ nitrogen --random --set-auto &
 dunst &
 /home/basarov/battery.sh &
 xgamma -gamma 0.8 &
+setxkbmap us -variant dvp
 exec bspwm
