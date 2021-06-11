@@ -15,6 +15,7 @@ function M.has_win_highlight(win_id, ...)
       break
     end
   end
+
   return (win_hl ~= nil and has_match), win_hl
 end
 
@@ -25,7 +26,7 @@ function M.highlight(name, opts)
     if opts.link and opts.link ~= "" then
       vim.cmd("highlight" .. (force and "!" or "") .. " link " .. name .. " " .. opts.link)
     else
-      local cmd = {"highlight", name}
+      local cmd = { "highlight", name }
       if opts.guifg and opts.guifg ~= "" then
         table.insert(cmd, "guifg=" .. opts.guifg)
       end
@@ -58,31 +59,31 @@ end
 
 function M.general_overrides()
   M.all {
-    {"Comment", {gui = "italic"}},
-    {"CursorLine", {guibg = _G.P.light_grey}},
-    {"Type", {gui = "italic"}},
-    {"Include", {gui = "italic"}},    
+    { "Comment", { gui = "italic" }},
+    { "CursorLine", { guibg = _G.P.light_grey }},
+    { "Type", { gui = "italic" }},
+    { "Include", { gui = "italic" }},    
     --Neogit
-    {"DiffAdd", {guibg = _G.P.bg, guifg = _G.P.green}},
-    {"DiffDelete", {guibg = _G.P.bg, guifg = _G.P.red}},
-    {"DiffChange", {guibg = _G.P.bg, guifg = _G.P.orange }},
-    {"NeogitNotificationError", {link = "StError"}},
-    {"NeogitNotificationWarning", {link = "StWarning"}},
+    { "DiffAdd", { guibg = _G.P.bg, guifg = _G.P.green }},
+    { "DiffDelete", { guibg = _G.P.bg, guifg = _G.P.red }},
+    { "DiffChange", { guibg = _G.P.bg, guifg = _G.P.orange }},
+    { "NeogitNotificationError", { link = "StError" }},
+    { "NeogitNotificationWarning", { link = "StWarning" }},
     -- Git Signs
-    {"GitSignsAdd", { guifg = _G.P.green}},
-    {"GitSignsChange", {guifg = _G.P.orange}},
-    {"GitSignsDelete", {guifg = _G.P.red}},
+    { "GitSignsAdd", { guifg = _G.P.green }},
+    { "GitSignsChange", { guifg = _G.P.orange }},
+    { "GitSignsDelete", { guifg = _G.P.red }},
     --NvimTree
-    {"NvimTreeNormal", {guibg = _G.P.bg }},
-    {"NvimtreeVertSplit", {guibg = _G.P.bg, guifg = _G.P.bg}},
-    {"NvimtreeStatusLine", {guibg = _G.P.bg, guifg = _G.P.white}},
-    {"NvimtreeStatuslineNC", {guibg = _G.P.bg, guifg = _G.P.fg}},
-    {"NvimTreeFolderIcon", {guifg = _G.P.blue}},
-    {"NvimTreeIndentMarker", {guifg = _G.P.blue}},
-    {"NvimTreeEmptyFolderName", {guifg = _G.P.white}},
-    {"NvimTreeOpenedFolderName", {guifg = _G.P.blue}},
-    {"NvimTreeGitDirty", {guifg = _G.P.light_yellow}},
-    {"NvimTreeRootFolder", {guifg = _G.P.red}},
+    { "NvimTreeNormal", { guibg = _G.P.bg }},
+    { "NvimtreeVertSplit", { guibg = _G.P.bg, guifg = _G.P.bg }},
+    { "NvimtreeStatusLine", { guibg = _G.P.bg, guifg = _G.P.white }},
+    { "NvimtreeStatuslineNC", { guibg = _G.P.bg, guifg = _G.P.fg }},
+    { "NvimTreeFolderIcon", { guifg = _G.P.blue }},
+    { "NvimTreeIndentMarker", { guifg = _G.P.blue }},
+    { "NvimTreeEmptyFolderName", { guifg = _G.P.white }},
+    { "NvimTreeOpenedFolderName", { guifg = _G.P.blue }},
+    { "NvimTreeGitDirty", { guifg = _G.P.light_yellow }},
+    { "NvimTreeRootFolder", { guifg = _G.P.red }},
    
   }
 end
@@ -91,11 +92,12 @@ require("utils.autocommands").augroup(
   "ExplorerHighlights",
   {
     {
-      events = {"VimEnter", "ColorScheme"},
-      targets = {"*"},
+      events = { "VimEnter", "ColorScheme" },
+      targets = { "*" },
       command = "lua require('utils.highlights').general_overrides()"
     }
   }
 )
 
 return M
+

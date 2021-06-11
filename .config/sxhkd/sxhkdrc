@@ -82,7 +82,7 @@ super + {o,i}
 	bspc wm -h on
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
+super + {_,alt + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
@@ -137,7 +137,7 @@ XF86MonBrightnessUp
 
 # lockscreen
 shift + Escape
-    betterlockscreen
+    betterlockscreen -l blur
 control + Escape
 	systemctl suspend
 

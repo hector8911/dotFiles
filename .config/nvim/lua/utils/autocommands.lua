@@ -30,23 +30,24 @@ end
 
 --- automatically clear commandline messages
 local function clear_messages()
-    local id
-    return function()
-        if id then fn.timer_stop(id) end
-        id = fn.timer_start(1500, function()
-            if fn.mode() == "n" then vim.cmd [[echon '']] end
-        end)
-    end
+  local id
+  return function()
+    if id then fn.timer_stop(id) end
+    id = fn.timer_start(1500, function()
+      if fn.mode() == "n" then vim.cmd [[echon '']] end
+    end)
+  end
 end
 
 M.clear_messages = clear_messages()
 
 M.augroup("ClearCommandMessages", {
-    {
-      events = {"CmdlineLeave", "CmdlineChanged"},
-      targets = {":"},
-      command = "lua require('utils.autocommands').clear_messages()"
-    }
+  {
+    events = { "CmdlineLeave", "CmdlineChanged" },
+    targets = { ":" },
+    command = "lua require('utils.autocommands').clear_messages()"
+  }
 })
 
 return M
+

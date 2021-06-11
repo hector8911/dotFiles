@@ -7,7 +7,7 @@ export LS_COLORS
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-HISTORY_IGNORE="(ls *|cd *|pwd|neofetch|lf|which *|echo *|nvim *|add *|restore *|commit *|status|glog)"
+HISTORY_IGNORE="(ls *|cd *|pwd|neofetch|lf|which *|echo *|nvim *|add *|restore *|commit *|status|glog|git *)"
 
 # Auto/tab complete:
 autoload -U compinit
@@ -44,7 +44,7 @@ precmd(){ echo -ne '\e[6 q' ;}
 bindkey -s '^ ' 'lf\n'
 alias lf='lfrun --last-dir-path=$HOME/.lastDir; LASTDIR=`cat $HOME/.lastDir`; cd "$LASTDIR"'
 
-bindkey -s '^e' 'nvim\n'
+bindkey -s '^h' 'nvim\n'
 
 alias add='git add'
 alias restore='git restore'
@@ -57,6 +57,7 @@ alias commit='git commit -m'
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
 
 SPACESHIP_PROMPT_ORDER=( dir git char )
 SPACESHIP_PROMPT_ADD_NEWLINE=false
