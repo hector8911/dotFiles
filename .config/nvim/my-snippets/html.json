@@ -1,19 +1,17 @@
 {
-    "table": {
-        "prefix": ["table"],
-        "body": [
-            "<table id='$1'>",
-            "\t<thead>",
-            "\t\t<th></th>",
-            "\t</thead>",
-            "\t<tbody>",
-            "\t\t<tr>",
-            "\t\t\t<td></td>",
-            "\t\t</tr>",
-            "\t</tbody>",
-            "</table>"
-        ]
-    }
-
-
+  "table": {
+    "prefix": ["table"],
+    "body": [
+      "<table id='$1'>",
+      "\t<thead>",
+      "\t\t<th></th>",
+      "\t</thead>",
+      "\t<tbody>",
+      "\t\t<tr>",
+      "\t\t\t<td></td>",
+      "\t\t</tr>",
+      "\t</tbody>",
+      "</table>"
+    ]
+  }
 }

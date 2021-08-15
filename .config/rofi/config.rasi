@@ -1,11 +1,11 @@
 configuration {
-  display-run: "";
+  display-drun: "";
   font: "UbuntuMono Nerd Font Bold 12";
 }
 
 * {
-  bg: #1e1f1c;
-  bg-alt: #272822;
+  bg: #181818;
+  bg-alt: #1e1e1d;
   fg: #d8d8d8;
   fg-alt: #565656;
   background-color: @bg;

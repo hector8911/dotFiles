@@ -1,12 +1,13 @@
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false
+    virtual_text = false,
+    update_in_insert = true
   }
 )
 
-vim.cmd 'autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()'
-vim.cmd 'autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()'
+-- vim.cmd 'autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()'
+-- vim.cmd 'autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()'
 
 -- Diagnostic icons
 vim.fn.sign_define("LspDiagnosticsSignError", {

@@ -8,6 +8,10 @@ export COLORTERM="truecolor"
 export OPENER="xdg-open"
 export WM="bspwm"
 
+#deno
+export PATH="$HOME/.deno/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
 export LF_ICONS="\
 tw=:\
 st=:\

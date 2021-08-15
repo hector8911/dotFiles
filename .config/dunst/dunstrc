@@ -177,21 +177,21 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#212121"
-    foreground = "#ffffff"
+    background = "#1e1e1d"
+    foreground = "#d8d8d8"
     frame_color = "#00afaf"
     timeout = 10
     icon = ~/.config/dunst/normal.png
 
 [urgency_normal]
-    background = "#212121"
+    background = "#1e1e1d"
     foreground = "#d8d8d8"
     timeout = 10
     icon = ~/.config/dunst/normal.png
 
 [urgency_critical]
-    background = "#212121"
-    foreground = "#ffffff"
+    background = "#1e1e1d"
+    foreground = "#d8d8d8"
     frame_color = "#ff1e8e"
     timeout = 0
     icon = ~/.config/dunst/critical.png

@@ -1,0 +1,16 @@
+{
+  "Html pug": {
+    "prefix": ["html"],
+    "body": [
+      "doctype html",
+      "html(lang=\"en\")",
+      "\thead",
+      "\t\tmeta(charset=\"UTF-8\")",
+      "\t\tmeta(http-equiv=\"X-UA-Compatible\", content=\"IE=edge\")",
+      "\t\tmeta(name=\"viewport\", content=\"width=device-width, initial-scale=1.0\")",
+      "\ttitle Document",
+      "\tbody ",
+      "\t\t${1:$TM_SELECTED_TEXT}"
+    ]
+  }
+}

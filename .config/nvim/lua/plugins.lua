@@ -44,5 +44,8 @@ return require('packer').startup(function()
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'tpope/vim-commentary'
 
+  -- hi pug
+  use 'digitaltoad/vim-jade'
+
 end)
 

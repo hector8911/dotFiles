@@ -49,5 +49,7 @@ M.augroup("ClearCommandMessages", {
   }
 })
 
+vim.cmd "au BufNewFile,BufRead,BufReadPost *.pug set filetype=pug"
+
 return M
 

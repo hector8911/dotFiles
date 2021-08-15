@@ -1,7 +1,7 @@
 
 local g = vim.g
 g.nvim_tree_width = 35
-g.nvim_tree_ignore = { '.git', 'node_modules', 'vendor', 'var','.cache' }
+g.nvim_tree_ignore = { 'node_modules', 'vendor', 'var' }
 g.nvim_tree_gitignore = 1
 g.nvim_tree_auto_close = 1
 g.nvim_tree_quit_on_open = 1
@@ -28,7 +28,8 @@ g.nvim_tree_icons = {
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
   vim.g.nvim_tree_bindings = {
-    ["."] = tree_cb("toggle_dotfiles"),
-    ["l"] = tree_cb("edit"),
+    { key = ".", cb = tree_cb("toggle_dotfiles") },
+    { key = "l", cb = tree_cb("edit") },
+    { key = ",", cb = tree_cb("toggle_ignored") },
 }
 
