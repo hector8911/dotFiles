@@ -1,0 +1,17 @@
+{
+    "workbench.startupEditor": "none",
+    "workbench.colorTheme": "Monokai++ Unified",
+    "workbench.sideBar.location": "right",
+    "editor.minimap.enabled": false,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.fontWeight": "bold",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "editor.scrollBeyondLastLine": false, // recommended by neovim
+    "editor.lineNumbers": "relative",
+    "editor.formatOnSave": true,
+    "security.workspace.trust.untrustedFiles": "open",
+}
