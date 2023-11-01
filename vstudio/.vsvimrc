@@ -1,0 +1,21 @@
+let mapleader = "\ "
+
+set clipboard=unnamed
+
+set ignorecase
+set hls
+
+nnoremap <silent> <leader>d :bd <CR>
+nmap <silent> gn :tabn <CR>
+nmap <silent> ga :tabp <CR>
+nnoremap <silent> <leader>q :q <CR>
+nnoremap <silent> <leader>d :close <CR>
+nnoremap <silent> <leader>w :w <CR>
+nnoremap <silent> <Esc> :noh <CR>
+nnoremap <silent> gcc :vsc Edit.ToggleLineComment<CR>
+vnoremap <silent> gcc :vsc Edit.ToggleLineComment<CR>
+nmap <silent> <leader>co :vsc View.CollapsetoDefinitions <CR>
+nnoremap <silent> gd :vsc Edit.GoToDefinition<CR>
+nnoremap <silent> <leader>ca :vsc Edit.CollapsetoDefinitions<CR>
+nnoremap <silent> <leader>ch :vsc Debug.ApplyCodeChanges<CR>
+nnoremap <silent> <leader>b :vsc Debug.ToggleBreakpoint<CR>
