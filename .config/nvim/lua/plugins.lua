@@ -2,50 +2,68 @@
 -- get config M(namePlugin, filename)
 local M = require("utils").load_plugin
 
--- Install packer.nvim if not exists
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  vim.api.nvim_command('!git clone https://github.com/wbthomason/packer.nvim ' ..install_path)
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
-vim.cmd [[packadd packer.nvim]]
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup(function()
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
 
+-- Setup lazy.nvim
+require("lazy").setup({
+  spec = {
+    -- import your plugins
   -- LSP - Autocomplete
-  use { 'neovim/nvim-lspconfig', config = M('nvim-lspconfig', 'lsp') }
-  use { 'hrsh7th/nvim-compe', config = M('nvim-compe', 'completion') }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = M('nvim-treesitter', 'treesitter') }
+  { 'neovim/nvim-lspconfig' },
+  { 'hrsh7th/nvim-compe' },
+  { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
 
-  use { 'windwp/nvim-autopairs', config = M('nvim-autopairs', 'autopairs') }
-  use 'windwp/nvim-ts-autotag'
-  use 'hrsh7th/vim-vsnip'
-  use "rafamadriz/friendly-snippets"
+  { 'windwp/nvim-autopairs' },
+  { 'windwp/nvim-ts-autotag'},
+  {'hrsh7th/vim-vsnip'},
+  {"rafamadriz/friendly-snippets"},
+
 
   -- Git
-  use { 'tpope/vim-fugitive' }
-  use { 'nvim-lua/plenary.nvim' }
-  use { 'TimUntersberger/neogit', config = M('neogit', 'neogit') }
-  use { 'lewis6991/gitsigns.nvim', config = M('gitsigns.nvim', 'gitsigns') }
+  { 'tpope/vim-fugitive' },
+  { 'nvim-lua/plenary.nvim' },
+  { 'TimUntersberger/neogit', config = M('neogit', 'neogit') },
+  { 'lewis6991/gitsigns.nvim', config = M('gitsigns.nvim', 'gitsigns') },
 
   -- Explorer
-  use { 'kyazdani42/nvim-web-devicons', config = M('nvim-web-devicons', 'devicons') }
-  use { 'kyazdani42/nvim-tree.lua', config = M('nvim-tree.lua', 'explorer') }
+  { 'kyazdani42/nvim-web-devicons', config = M('nvim-web-devicons', 'devicons') },
+  { 'kyazdani42/nvim-tree.lua', config = M('nvim-tree.lua', 'explorer') },
 
   -- Terminal
-  use { 'akinsho/nvim-toggleterm.lua', config = M('nvim-toggleterm.lua', 'terminal') }
+  { 'akinsho/nvim-toggleterm.lua', config = M('nvim-toggleterm.lua', 'terminal') },
 
   -- Tabs buffers
-  use { 'akinsho/nvim-bufferline.lua', config = M('nvim-bufferline.lua', 'bufferline') }
+  { 'akinsho/nvim-bufferline.lua', config = M('nvim-bufferline.lua', 'bufferline') },
 
   -- Comment
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
-  use 'tpope/vim-commentary'
+  {'JoosepAlviste/nvim-ts-context-commentstring'},
+  {'tpope/vim-commentary'},
 
   -- hi pug
-  use 'digitaltoad/vim-jade'
+  {'digitaltoad/vim-jade'},
 
-end)
+  },
+
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  --install = { colorscheme = { "habamax" } },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
+})
 

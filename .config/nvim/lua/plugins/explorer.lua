@@ -26,10 +26,33 @@ g.nvim_tree_icons = {
   }
 }
 
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-  vim.g.nvim_tree_bindings = {
-    { key = ".", cb = tree_cb("toggle_dotfiles") },
-    { key = "l", cb = tree_cb("edit") },
-    { key = ",", cb = tree_cb("toggle_ignored") },
-}
+require("nvim-tree").setup()
 
+-- vim.g.nvim_tree_bindings = {
+--     { key = ".", cb = tree_cb("toggle_dotfiles") },
+--     { key = "l", cb = tree_cb("edit") },
+--     { key = ",", cb = tree_cb("toggle_ignored") },
+-- }
+
+local function my_on_attach(bufnr)
+  local api = require "nvim-tree.api"
+
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- default mappings
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- custom mappings
+  vim.keymap.set('n', '.', api.tree.toggle_dotfiles)
+  vim.keymap.set('n', 'l',     api.tree.edit)
+  vim.keymap.set('n', ',',     api.tree.toggle_ignored)
+end
+
+-- pass to setup along with your other options
+require("nvim-tree").setup {
+  ---
+  on_attach = my_on_attach,
+  ---
+}

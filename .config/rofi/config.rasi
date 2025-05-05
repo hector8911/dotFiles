@@ -1,62 +1,85 @@
 configuration {
-  display-drun: "";
-  font: "UbuntuMono Nerd Font Bold 12";
+  show-icons: true;
+  display-drun: " ";
 }
 
 * {
-  bg: #181818;
-  bg-alt: #1e1e1d;
-  fg: #d8d8d8;
-  fg-alt: #565656;
-  background-color: @bg;
+  background-color: #181818;
+  active-background: #6272a4;
+  selected-background: #3C3C3C;
+  border-color: #565656;
+  foreground: #d8d8d8;
+  font: "UbuntuMono Nerd Font Bold 14";
+}
 
+#window {
+  border-radius: 4;
+  background-color: @background-color;
+  border-color: @border-color;
+  width: 700;
+  padding: 8;
+  border: 1;
+}
+
+#mainbox {
   border: 0;
-  margin: 0;
   padding: 0;
-  spacing: 0;
 }
 
-element {
-  padding: 12;
-  orientation: vertical;
-  text-color: @fg-alt;
+#textbox {
+  text-color: @foreground;
 }
 
-element selected {
-  text-color: @fg;
-}
-
-entry {
-  background-color: @bg-alt;
-  padding: 12;
-  text-color: @fg;
-}
-
-inputbar {
-  children: [prompt,entry];
-}
-
-listview {
-  background-color: @bg;
+#listview {
+  padding: 0;
   columns: 1;
   lines: 8;
 }
 
-mainbox {
-  background-color: @bg;
-  children: [inputbar, listview];
+#element {
+  border: 0;
+  padding: 10;
 }
 
-prompt {
-  background-color: @bg-alt;
-  enabled: true;
-  font: "FontAwesome 14";
-  padding: 8 0 0 12;
-  text-color: @fg;
+#element.normal.normal {
+  background-color: @background-color;
+  text-color: @foreground;
 }
 
-window {
-  width: 500;
-	border: 1;
-  border-color: @fg-alt;
+#element.selected.normal {
+  background-color: @selected-background;
+  text-color: @foreground;
+}
+
+#element.alternate.normal {
+  background-color: @background-color;
+  text-color: @foreground;
+}
+
+#inputbar {
+  spacing: 0;
+  text-color: @foreground;
+  padding: 1px;
+  children: [ prompt, textbox-prompt-colon, entry ];
+}
+
+#entry {
+  spacing: 0;
+  text-color: @foreground;
+}
+
+#prompt {
+  spacing: 0;
+  text-color: @foreground;
+}
+
+#textbox-prompt-colon {
+  expand: false;
+  text-color: @foreground;
+  padding: 4 0 0 8;
+}
+
+element-text, element-icon {
+  background-color: inherit;
+  text-color: inherit;
 }

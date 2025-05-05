@@ -18,4 +18,5 @@ require('maps')
 require('plugins')
 require('settings')
 require("plugins.statusline")
+require("lazy")
 

@@ -1,5 +1,7 @@
 #! /bin/sh
 
+# setxkbmap us -variant dvp
+
 pgrep -x sxhkd > /dev/null || sxhkd -m 1 &
 
 $HOME/.config/polybar/launch.sh
@@ -15,3 +17,6 @@ bspc config gapless_monocle      true
 bspc rule -a Brave-browser desktop='^1' follow=on
 bspc rule -a Pcmanfm desktop='^3' follow=on
 bspc rule -a Surf desktop='^1' follow=on state=tiled
+
+picom --config ~/.config/picom.conf &
+nitrogen --restore &
