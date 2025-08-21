@@ -137,10 +137,12 @@ F5
 
 # lockscreen
 shift + Escape
-    betterlockscreen -l blur
+  betterlockscreen -l blur
+
 control + Escape
 	systemctl suspend
 
 #Screeshot
 Print
     scrot
+
