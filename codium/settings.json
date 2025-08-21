@@ -1,17 +1,58 @@
 {
-    "workbench.startupEditor": "none",
-    "workbench.colorTheme": "Monokai++ Unified",
-    "workbench.sideBar.location": "right",
-    "editor.minimap.enabled": false,
-    "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.fontWeight": "bold",
-    "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.defaultProfile.windows": "Git Bash",
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
-    },
-    "editor.scrollBeyondLastLine": false, // recommended by neovim
-    "editor.lineNumbers": "relative",
-    "editor.formatOnSave": true,
-    "security.workspace.trust.untrustedFiles": "open",
+  "workbench.colorTheme": "Monokai++ Unified",
+  "workbench.startupEditor": "none",
+  "editor.wordWrap": "on",
+  "explorer.confirmDelete": false,
+  "editor.tabSize": 2,
+  "terminal.external.windowsExec": "C:\\Program Files\\Git\\git-bash.exe",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "editor.fontWeight": "bold",
+  "editor.inlayHints.fontFamily": "Hack",
+  "workbench.iconTheme": "material-icon-theme",
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "files.exclude": {
+    "**/.next": true,
+    "**/dist": true,
+    "**/docs": true,
+    "**/node_modules": true
+  },
+  "editor.fontFamily": "Hack,Consolas,'Courier New', monospace",
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.cursorBlinking": true,
+  "explorer.confirmDragAndDrop": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "update.mode": "manual",
+  "workbench.sideBar.location": "right",
+  "editor.minimap.enabled": false,
+  "typescript.format.enable": false,
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[html]": { "editor.defaultFormatter": "vscode.html-language-features" },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "editor.formatOnSave": true,
+  "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "git.openRepositoryInParentFolders": "never",
+  "editor.scrollBeyondLastLine": false,
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "extensions.experimental.affinity": { "asvetliakov.vscode-neovim": 1 },
+  "editor.foldingImportsByDefault": true,
+  "editor.unfoldOnClickAfterEndOfLine": true,
+  "editor.scrollbar.verticalScrollbarSize": 8,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.referencesCodeLens.enabled": true,
+  "javascript.referencesCodeLens.enabled": true,
+  "workbench.editorAssociations": {
+    "{git,gitlens}:/**/*.{md,csv,svg}": "default"
+  },
+  "accessibility.signals.lineHasFoldedArea": { "sound": "off" },
+  "workbench.colorCustomizations": {
+    "editorUnnecessaryCode.border": "#ff0000",
+    "debugConsole.infoForeground": "#55cbfa",
+    "debugConsole.warningForeground": "#fadf46",
+    "debugConsole.errorForeground": "#fd3021"
+  },
+  "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
 }
+
