@@ -1,12 +1,10 @@
 # Default Apps
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERMINAL="st"
+export TERMINAL="kitty"
 export BROWSER="brave"
 export VIDEO="mpv"
 export COLORTERM="truecolor"
-export OPENER="xdg-open"
-export WM="bspwm"
 
 #deno
 export PATH="$HOME/.deno/bin:$PATH"

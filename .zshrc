@@ -7,7 +7,7 @@ export LS_COLORS
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-HISTORY_IGNORE="(ls *|cd *|pwd|neofetch|lf|which *|echo *|nvim *|add *|restore *|commit *|status|glog|git *)"
+HISTORY_IGNORE="(ls *|cd *|rm *|pwd|neofetch|lf|which *|echo *|nvim *|add *|restore *|commit *|status|glog|git *)"
 
 # Auto/tab complete:
 autoload -U compinit
@@ -42,7 +42,8 @@ precmd(){ echo -ne '\e[6 q' ;}
 
 # Switch directory  ctrl-space
 bindkey -s '^ ' 'lf\n'
-alias lf='lfrun --last-dir-path=$HOME/.lastDir; LASTDIR=`cat $HOME/.lastDir`; cd "$LASTDIR"'
+alias lf='lf --last-dir-path=$HOME/.lastDir; LASTDIR=$(cat $HOME/.lastDir); cd "$LASTDIR"'
+
 
 bindkey -s '^h' 'nvim\n'
 
@@ -61,6 +62,9 @@ setopt HIST_IGNORE_SPACE
 
 SPACESHIP_PROMPT_ORDER=( dir git char )
 SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_RPROMPT_ADD_NEWLINE=true
+
 SPACESHIP_CHAR_SYMBOL=❯
 SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_DIR_TRUNC=1
@@ -71,3 +75,7 @@ prompt spaceship
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

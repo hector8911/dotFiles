@@ -7,8 +7,7 @@ set incsearch
 
 set icons
 set ratios 1:2:3
-set cleaner ~/.config/lf/cleaner
-set previewer ~/.config/lf/preview
+set preview true
 
 # Functions
 
