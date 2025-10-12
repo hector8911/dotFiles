@@ -1,43 +1,40 @@
 #!/bin/sh
 path=$(pwd)
 
-#HOME
-ln -sf $path/.tmux.conf $HOME/.tmux.conf
-ln -sf $path/.xinitrc $HOME/.xinitrc
-ln -sf $path/.zprofile $HOME/.zprofile
-ln -sf $path/.zshenv $HOME/.zshenv
-ln -sf $path/.zshrc $HOME/.zshrc
-ln -sf $path/battery.sh $HOME/battery.sh
+# HOME
+ln -sf "$path/.tmux.conf" "$HOME/.tmux.conf"
+ln -sf "$path/.zshenv" "$HOME/.zshenv"
+ln -sf "$path/.zshrc" "$HOME/.zshrc"
+ln -sf "$path/battery.sh" "$HOME/battery.sh"
 
-#Config
-[ ! -d $HOME/.config ] && mkdir $HOME/.config
+# CONFIG
+[ ! -d "$HOME/.config" ] && mkdir -p "$HOME/.config"
 
-[ -d $HOME/.config/nvim ] && rm -rf $HOME/.config/nvim
-ln -sf $path/.config/nvim $HOME/.config/nvim
+for dir in "$path/.config"/*; do
+    name=$(basename "$dir")
+    target="$HOME/.config/$name"
 
-[ -d $HOME/.config/bspwm ] && rm -rf $HOME/.config/bspwm
-ln -sf $path/.config/bspwm $HOME/.config/bspwm
-
-[ -d $HOME/.config/dunst ] && rm -rf $HOME/.config/dunst
-ln -sf $path/.config/dunst $HOME/.config/dunst
-
-[ -d $HOME/.config/lf ] && rm -rf $HOME/.config/lf
-ln -sf $path/.config/lf $HOME/.config/lf
-
-[ -d $HOME/.config/polybar ] && rm -rf $HOME/.config/polybar
-ln -sf $path/.config/polybar $HOME/.config/polybar
-
-[ -d $HOME/.config/rofi ] && rm -rf $HOME/.config/rofi
-ln -sf $path/.config/rofi $HOME/.config/rofi
-
-[ -d $HOME/.config/sxhkd ] && rm -rf $HOME/.config/sxhkd
-ln -sf $path/.config/sxhkd $HOME/.config/sxhkd
-
-[ -d $HOME/.config/qutebrowser ] && rm -rf $HOME/.config/qutebrowser
-ln -sf $path/.config/qutebrowser $HOME/.config/qutebrowser
-
-ln -sf $path/.config/picom.conf $HOME/.config/picom.conf
+    if [ -e "$target" ] && [ ! -L "$target" ]; then
+        echo "⚠️  La carpeta '$name' ya existe en ~/.config"
+        read -p "¿Reemplazar? (y/n): " choice
+        case "$choice" in
+            y|Y)
+                mv "$target" "$target.backup_$(date +%Y%m%d_%H%M%S)"
+                ln -sfn "$dir" "$target"
+                echo "✅ '$name' reemplazada (se creó un respaldo)."
+                ;;
+            *)
+                echo "⏩ Se mantuvo '$name'."
+                ;;
+        esac
+    else
+        ln -sfn "$dir" "$target"
+        echo "✅ '$name' enlazada correctamente."
+    fi
+done
 
 #Local
 [ -d $HOME/.local/share/fonts ] && rm -r $HOME/.local/share/fonts
 ln -sf $path/.local/share/fonts $HOME/.local/share/fonts
+
+echo "✨ Configuración completada."

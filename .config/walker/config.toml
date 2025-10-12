@@ -1,0 +1,6 @@
+theme = "custom"
+theme_location = ["~/.config/walker/themes/"]
+
+[placeholders]
+"default" = { input = "  Search ", list = "No Results" }
+

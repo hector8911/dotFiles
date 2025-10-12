@@ -6,8 +6,8 @@ set ignorecase
 set hls
 
 nnoremap <silent> <leader>d :bd <CR>
-nmap <silent> gn :tabn <CR>
-nmap <silent> ga :tabp <CR>
+nmap <silent> tn :tabn <CR>
+nmap <silent> ta :tabp <CR>
 nnoremap <silent> <leader>q :q <CR>
 nnoremap <silent> <leader>d :close <CR>
 nnoremap <silent> <leader>w :w <CR>
