@@ -1,0 +1,90 @@
+#notification-center {
+  background: #1e1e1d;
+  color: #d8d8d8;
+  border-radius: 0;
+  border: 2px solid #565656;
+  margin: 0;
+  padding: 0;
+}
+
+.notification {
+  background: #1e1e1d;
+  color: #d8d8d8;
+  border: 2px solid #565656;
+  border-radius: 0;
+  margin: 0;
+  padding: 8px 10px;
+  font-family: "Noto Sans";
+  font-size: 9pt;
+  box-shadow: none;
+}
+
+.notification + .notification {
+  border-top: 2px solid #565656;
+}
+
+.notification .title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.notification .body {
+  color: #d8d8d8;
+}
+
+.notification .icon {
+  margin-right: 10px;
+}
+
+.notification.low {
+  border-color: #00afaf;
+}
+
+.notification.normal {
+}
+
+.notification.critical {
+  border-color: #ff1e8e;
+}
+
+.notification .actions {
+  margin-top: 8px;
+}
+
+.notification .action-button {
+  background: #333;
+  color: #d8d8d8;
+  border: 1px solid #555;
+  padding: 4px 8px;
+  margin-right: 4px;
+  border-radius: 2px;
+}
+
+.notification .action-button:hover {
+  background: #ff1e8e;
+  color: white;
+}
+
+.close-button {
+  background: transparent;
+  color: #d8d8d8;
+  border: none;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.close-button:hover {
+  color: #ff1e8e;
+}
+
+.widget {
+  background: #1e1e1d;
+  color: #d8d8d8;
+  padding: 8px;
+}
+
+.widget .title {
+  font-weight: bold;
+  font-size: 10pt;
+  margin-bottom: 6px;
+}
