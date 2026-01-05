@@ -7,7 +7,7 @@ export LS_COLORS
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-HISTORY_IGNORE="(ls *|cd *|rm *|pwd|neofetch|lf|which *|echo *|nvim *|add *|restore *|commit *|status|glog|git *)"
+HISTORY_IGNORE="(ls *|cd *|rm *|pwd|neofetch|lf|which *|echo *|nvim *|vim *|add *|restore *|commit *|status|glog|git *|npm *|pnpm *)"
 
 # Auto/tab complete:
 autoload -U compinit
