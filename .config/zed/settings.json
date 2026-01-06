@@ -1,12 +1,23 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "outline_panel": {
+    "indent_size": 15.0
+  },
+  "indent_guides": {
+    "background_coloring": "disabled",
+    "coloring": "fixed",
+    "active_line_width": 0,
+    "line_width": 0,
+    "enabled": true
+  },
+  "auto_indent": false,
+  "tab_bar": {
+    "show_tab_bar_buttons": true,
+  },
+  "zoomed_padding": true,
+  "active_pane_modifiers": {
+    "border_size": 8.0,
+    "inactive_opacity": 1.0,
+  },
   "agent": {
     "model_parameters": [],
     "expand_edit_card": false,
@@ -28,7 +39,6 @@
   "inlay_hints": {
     "show_background": false,
   },
-  "tab_size": 2,
   "toolbar": {
     "code_actions": false,
     "agent_review": true,
@@ -43,6 +53,9 @@
   },
   "icon_theme": "Icons modern material (Dark)",
   "terminal": {
+    "toolbar": {
+      "breadcrumbs": false,
+    },
     "font_size": 14.0,
     "dock": "left",
     "shell": {
@@ -52,6 +65,7 @@
   "buffer_font_weight": 500.0,
   "vim_mode": true,
   "project_panel": {
+    "indent_size": 14.0,
     "hide_root": true,
     "dock": "right",
   },
@@ -66,22 +80,31 @@
     "dark": "Monokai Night",
   },
   "formatter": "prettier",
-  // "languages": {
-  //   "JavaScript": {
-  //     "formatter": "prettier",
-  //   },
-  //   "TypeScript": {
-  //     "formatter": "prettier",
-  //   },
-  //   "JSON": {
-  //     "formatter": "prettier",
-  //   },
-  // },
+  "preferred_line_length": 80,
   "prettier": {
-    "allowed": true,
-    "trailingComma": "es5",
-    "semi": true,
-    "tabWidth": 2,
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "endOfLine": "lf",
+    "htmlWhitespaceSensitivity": "css",
+    "insertPragma": false,
+    "singleAttributePerLine": false,
+    "bracketSameLine": false,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": false,
     "printWidth": 80,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "semi": true,
+    "singleQuote": false,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false,
+    "embeddedLanguageFormatting": "auto",
+    "vueIndentScriptAndStyle": false,
+    "experimentalTernaries": false,
   },
+  "tab_size": 2,
+  "hard_tabs": false,
+  "soft_wrap": "editor_width",
 }
