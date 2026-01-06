@@ -58,9 +58,10 @@
     },
     "font_size": 14.0,
     "dock": "left",
-    "shell": {
-      "program": "C:\\Program Files\\Git\\bin\\bash.exe",
-    },
+    // // FOR WINDOWS
+    // "shell": {
+    //   "program": "C:\\Program Files\\Git\\bin\\bash.exe"
+    // }
   },
   "buffer_font_weight": 500.0,
   "vim_mode": true,
@@ -79,7 +80,14 @@
     "light": "Ayu Light",
     "dark": "Monokai Night",
   },
-  "formatter": "prettier",
+  "formatter": {
+    "external": {
+      "command": "npx",
+      // // FOR WINDOWS, REQUIRE ENVIROMENTS VARIABLES
+      // "command": "npx.cmd",
+      "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
+    }
+  },
   "preferred_line_length": 80,
   "prettier": {
     "arrowParens": "always",
