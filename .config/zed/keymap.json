@@ -8,19 +8,19 @@
 [
   {
     "context": "Workspace",
-    "bindings": {},
+    "bindings": {}
   },
   {
     "context": "ProjectPanel",
     "bindings": {
-      "space e": "workspace::ToggleRightDock",
-    },
+      "space e": "workspace::ToggleRightDock"
+    }
   },
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
       // "j k": "vim::NormalBefore"
-    },
+    }
   },
   {
     "context": "Editor && vim_mode == normal",
@@ -30,14 +30,120 @@
       "t n": "pane::ActivateNextItem",
       "t a": "pane::ActivatePreviousItem",
       "space t": "terminal_panel::Toggle",
-      "space e": "project_panel::ToggleFocus",
-    },
+      "space e": "project_panel::ToggleFocus"
+    }
   },
   {
     "context": "Terminal",
     "bindings": {
       "space n": "workspace::NewTerminal",
-      "space t": "terminal_panel::Toggle",
-    },
+      "space t": "terminal_panel::Toggle"
+    }
   },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "y": "project_panel::Copy"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "unbind": {
+      "ctrl-c": "project_panel::Copy"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "p": "project_panel::Paste"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "unbind": {
+      "ctrl-v": "project_panel::Paste"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "x": "project_panel::Cut"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "unbind": {
+      "ctrl-x": "project_panel::Cut"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "r": "project_panel::Rename"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "unbind": {
+      "shift-r": "project_panel::Rename"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "unbind": {
+      "%": "project_panel::NewFile"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "f": "project_panel::NewDirectory"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "unbind": {
+      "d": "project_panel::NewDirectory"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "g d": "project_panel::RevealInFileManager"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "unbind": {
+      "ctrl-alt-r": "project_panel::RevealInFileManager"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "d": [
+        "project_panel::Trash",
+        {
+          "skip_prompt": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "unbind": {
+      "delete": [
+        "project_panel::Trash",
+        {
+          "skip_prompt": false
+        }
+      ]
+    }
+  }
 ]
