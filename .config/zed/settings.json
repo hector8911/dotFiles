@@ -57,6 +57,9 @@
     "toolbar": {
       "breadcrumbs": false
     },
+    //"shell": {
+      //"program": "C:\\Program Files\\Git\\bin\\bash.exe"
+    //},
     "font_size": 14.0,
     "dock": "left"
   },
